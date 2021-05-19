@@ -57,7 +57,11 @@ EMACS_ARGS ?= --eval "(progn \
 PREFIX  := $(shell $(EMACS) -Q --batch --eval \
 	"(princ (expand-file-name \"../../../..\" data-directory))")
 
-LOAD_PATH  ?= $(addprefix -L ../../,$(DEPS))
+LOAD_PATH += -L $(PREFIX)/share/emacs/site-lisp
+LOAD_PATH += -L $(PREFIX)/share/emacs/site-lisp/compat
+LOAD_PATH += -L $(PREFIX)/share/emacs/site-lisp/emacsql
+LOAD_PATH += -L $(PREFIX)/share/emacs/site-lisp/ghub
+LOAD_PATH += -L $(PREFIX)/share/emacs/site-lisp/magit
 LOAD_PATH  += -L .
 
 ifndef ORG_LOAD_PATH
